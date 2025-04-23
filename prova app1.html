@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Appartamento 1</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            margin: 0; 
+            background: url('img/background/lamiacasaalmare_sfondo.svg') no-repeat center center fixed; 
+            background-size: cover; 
+        }
+        header { background: rgba(255, 245, 216, 0.9); color: white; padding: 1rem; text-align: center; }
+        .container { max-width: 900px; margin: auto; padding: 2rem; background: rgba(255, 255, 255, 0.9); border-radius: 8px; }
+        .gallery img { width: 30%; margin: 5px; border-radius: 8px; }
+        .calendar { margin-top: 2rem; }
+        .calendar h3 { margin-bottom: 0.5rem; }
+        .date { display: inline-block; width: 80px; padding: 0.5rem; margin: 5px; border-radius: 5px; text-align: center; background-color: #dff0d8; }
+        .booked { background-color: #f2dede; color: #a94442; }
+        .btn-back { display: inline-block; margin-top: 2rem; background: #3498db; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px; }
+        .logo-box img { max-width: 100%; height: auto; }
+        @font-face {
+            font-family: 'Britannic Bold Italic';
+            src: url('fonts/Britannic\ Bold\ Italic.ttf') format('truetype');
+        }
+    </style>    
+</head>
+<body>
+
+<header style="text-align: center; padding: 1rem 0;">
+    <div class="logo-box">
+        <img src="img/Logo/Logo 1 sottolineato.png" alt="La mia casa al mare" style="max-width: 600px;">
+    </div>
+</header>
+
+  <div class="container">
+    <h2 style="font-family: 'Britannic Bold Italic'; font-size: 50px;">Appartamento 1</h2>
+    <p>Casa accogliente con vista sul mare, 2 camere da letto, terrazza panoramica, Wi-Fi e parcheggio gratuito.</p>
+
+    <div class="gallery">
+      <img src="img/blue.jfif" alt="Casa al Mare" style="width: 100px;">
+      <img src="img/blue.jfif" alt="Casa al Mare" style="width: 200px;">
+      <img src="img/blue.jfif" alt="Casa al Mare" style="width: 200px;">
+    </div>
+
+    <div class="prices-container">
+        <h3 style="font-family: 'Britannic Bold Italic'; font-size: 40px;">Prezzi</h3>
+        <p>Prezzo per notte: <strong>€100</strong> (Media Stagione)</p>
+        <p>Note: Minimo 3 notti</p>
+    </div>
+
+    <!-- <div class="calendar">
+      <h3>Disponibilità</h3>
+      <div class="date booked" style="background-color: #e74c3c; color: white; font-weight: bold;">1 Maggio</div>
+      <div class="date" style="background-color: #2ecc71; color: white; font-weight: bold;">2 Maggio</div>
+      <div class="date" style="background-color: #2ecc71; color: white; font-weight: bold;">3 Maggio</div>
+      <div class="date booked" style="background-color: #e74c3c; color: white; font-weight: bold;">4 Maggio</div>
+      <div class="date" style="background-color: #2ecc71; color: white; font-weight: bold;">5 Maggio</div>
+      <div class="date booked" style="background-color: #e74c3c; color: white; font-weight: bold;">6 Maggio</div>
+      <div class="booking">
+        <h3>Richiedi una prenotazione</h3s>
+        <form onsubmit="prenota(event)">
+          <label>Nome:<br>
+            <input type="text" name="nome" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
+          </label><br>
+          <label>Email:<br>
+            <input type="email" name="email" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
+          </label><br>
+          <label>Data di arrivo:<br>
+            <input type="date" name="arrivo" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
+          </label><br>
+          <label>Data di partenza:<br>
+            <input type="date" name="partenza" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
+          </label><br>
+          <button type="submit" style="background: #2980b9; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer;">Invia richiesta</button>
+        </form>
+      </div>      
+    </div> -->
+
+<div class="calendar-container">
+    <h3 style="font-family: 'Britannic Bold Italic'; font-size: 20px;">Calendario Disponibilità</h3>
+    <div id="calendar"></div>
+</div>
+ 
+<script>
+    // Dati di esempio: giorni prenotati
+    const bookedDates = ["2025-05-01", "2025-05-04", "2025-05-06"];
+
+    function generateCalendar(year, month) {
+        const calendar = document.getElementById("calendar");
+        calendar.innerHTML = ""; // Pulisce il calendario precedente
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        // Intestazione del calendario con navigazione
+        const header = document.createElement("div");
+        header.className = "calendar-header";
+        header.innerHTML = `
+            <button onclick="changeMonth(${year}, ${month - 1})">&lt;</button>
+            <strong>${new Date(year, month).toLocaleString("it-IT", { month: "long", year: "numeric" })}</strong>
+            <button onclick="changeMonth(${year}, ${month + 1})">&gt;</button>
+        `;
+        calendar.appendChild(header);
+
+        // Giorni della settimana
+        const daysOfWeek = ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"];
+        const daysRow = document.createElement("div");
+        daysRow.className = "calendar-row";
+        daysOfWeek.forEach(day => {
+            const dayCell = document.createElement("div");
+            dayCell.className = "calendar-cell calendar-day";
+            dayCell.textContent = day;
+            daysRow.appendChild(dayCell);
+        });
+        calendar.appendChild(daysRow);
+
+        // Giorni del mese
+        const daysGrid = document.createElement("div");
+        daysGrid.className = "calendar-grid";
+
+        // Celle vuote prima del primo giorno
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement("div");
+            emptyCell.className = "calendar-cell empty";
+            daysGrid.appendChild(emptyCell);
+        }
+
+        // Celle per i giorni del mese
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+            const dayCell = document.createElement("div");
+            dayCell.className = "calendar-cell";
+            dayCell.textContent = day;
+
+            // Evidenzia i giorni prenotati
+            if (bookedDates.includes(date)) {
+                dayCell.classList.add("booked");
+                dayCell.title = "Prenotato";
+            } else {
+                dayCell.classList.add("available");
+                dayCell.title = "Disponibile";
+            }
+
+            daysGrid.appendChild(dayCell);
+        }
+
+        calendar.appendChild(daysGrid);
+    }
+
+    function changeMonth(year, month) {
+        if (month < 0) {
+            year--;
+            month = 11;
+        } else if (month > 11) {
+            year++;
+            month = 0;
+        }
+        generateCalendar(year, month);
+    }
+
+    // Genera il calendario per il mese corrente
+    const today = new Date();
+    generateCalendar(today.getFullYear(), today.getMonth());
+</script>
+
+<style>
+    .calendar-container {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: rgba(255, 236, 214, 0.9);
+        border-radius: 3px;
+        box-shadow: 0 2px 5px rgba(70, 58, 38, 0.725);
+    }
+    .calendar-header {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    .calendar-header button {
+        background: #ffe8a7;
+        color: white;
+        border: none;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .calendar-header button:hover {
+        background: #cab885;
+        color: white;
+        border: none;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .calendar-row, .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+    }
+    .calendar-cell {
+        text-align: center;
+        padding: 0.5rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .calendar-day {
+        font-weight: bold;
+        background: #fff5ec;
+    }
+    .booked {
+        background: #ff9c91;
+        color: white;
+    }
+    .available {
+        background: #63f19e;
+        color: rgb(3, 3, 2);
+    }
+    .empty {
+        visibility: hidden;
+    }
+</style>
+
+    <a href="prova sito 2.html" class="btn-back">Torna alla homepage</a>
+  </div>
+
+</body>
+<script>
+    function prenota(event) {
+      event.preventDefault();
+      alert("Grazie! La tua richiesta di prenotazione è stata inviata.");
+      // Qui in futuro potrai inviare i dati a un server o email
+    }
+  </script>  
+</html>
