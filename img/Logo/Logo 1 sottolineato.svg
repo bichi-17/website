@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="Logo 1 sottolineato.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4948513"
+     inkscape:cx="337.49176"
+     inkscape:cy="379.97091"
+     inkscape:window-width="2880"
+     inkscape:window-height="1541"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <rect
+       x="171.25449"
+       y="84.289321"
+       width="654.91465"
+       height="432.81897"
+       id="rect1" />
+    <rect
+       x="171.25449"
+       y="84.289321"
+       width="654.91465"
+       height="432.81897"
+       id="rect5" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Livello 2"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.5778px;font-family:'Britannic Bold';-inkscape-font-specification:'Britannic Bold, ';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#e6bb96;fill-opacity:1;stroke:#91d0ee;stroke-width:1.428;stroke-opacity:0"
+       x="3.5399284"
+       y="105.31287"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="fill:#e6bb96;fill-opacity:1;stroke-width:1.428"
+         x="3.5399284"
+         y="105.31287">La mia casa al mare</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Livello 3"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.44402102,0,0,0.4377672,-55.985061,13.57785)"
+       id="text4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:extra-condensed;font-size:40.18px;font-family:'Gill Sans MT Ext Condensed Bold';-inkscape-font-specification:'Gill Sans MT Ext Condensed Bold,  Extra-Condensed';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect5);display:inline;fill:#eebb91;fill-opacity:1;stroke:#91d0ee;stroke-width:5.39717;stroke-opacity:0"><tspan
+         x="171.25391"
+         y="124.389"
+         id="tspan2">La mia casa al <tspan
+   style="font-stretch:normal;font-family:'Gill Sans Ultra Bold Condensed';-inkscape-font-specification:'Gill Sans Ultra Bold Condensed, ';fill:#91daee"
+   id="tspan1">mare</tspan></tspan></text>
+  </g>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.44402102,0,0,0.4377672,-55.98506,-23.591399)"
+       id="text1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40.18px;font-family:'Britannic Bold';-inkscape-font-specification:'Britannic Bold, ';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);fill:#eebb91;fill-opacity:1;stroke:#91d0ee;stroke-width:5.39717;stroke-opacity:0"><tspan
+         x="171.25391"
+         y="126.96563"
+         id="tspan5">La mia casa al <tspan
+   style="font-style:italic;font-size:51.2104px;font-family:'Brush Script MT';-inkscape-font-specification:'Brush Script MT Italic';fill:#99d0ed"
+   id="tspan4">Mare</tspan></tspan></text>
+    <rect
+       style="fill:#99d0ed;fill-opacity:1;stroke:#91d0ee;stroke-width:1.69997;stroke-opacity:0"
+       id="rect3"
+       width="42.030167"
+       height="1.1439967"
+       x="138.72418"
+       y="34.296295" />
+  </g>
+</svg>
