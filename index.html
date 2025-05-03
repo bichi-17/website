@@ -1,66 +1,207 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>homepage</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Qui troverai tutto l'occorrente per programmare la tua prossima vacanza al mare"
+    />
+    <title>La mia casa al mare - Homepage</title>
     <style>
-        body { 
-            font-family: sans-serif; 
-            margin: 0; 
-            background: url('img/background/lamiacasaalmare_sfondo.svg') no-repeat center center fixed; 
-            background-size: cover; 
-        }    
-        header { background: rgba(255, 245, 216, 0.9); color: white; padding: 1rem; text-align: center; }
-        .container { max-width: 900px; margin: auto; padding: 2rem; background: rgba(179, 128, 128, 0); border-radius: 8px; }
-        .casa { background: rgb(255, 245, 216, 0.9); padding: 1rem; margin-bottom: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .btn { display: inline-block; margin-top: 1rem; background: #2980b9; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px; }
-        .logo-box img { max-width: 100%; height: auto; }
-        @font-face {
-            font-family: 'Gill Sans MT Ext Condensed Bold';
-            src: url('fonts/Gill\ Sans\ MT\ Extended\ Condensed\ Bold.TTF') format('truetype');
-}
-  </style>
-</head>
-<body>
+      /* General Styles */
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        background: url("img/background/lamiacasaalmare_sfondo.svg") no-repeat
+          center center fixed;
+        background-size: cover;
+        line-height: 1.6;
+      }
 
-<header style="text-align: center; padding: 1rem 0;">
-    <div class="logo-box">
-        <img src="img/Logo/Logo 1 sottolineato.png" alt="La mia casa al mare" style="max-width: 600px;">
+      p {
+        font-size: 14px;
+        color: #716d6d;
+        line-height: 1.5;
+      }
+
+      header {
+        background: rgba(255, 245, 216, 0.9);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 2rem;
+        background: rgba(179, 128, 128, 0);
+        border-radius: 8px;
+      }
+
+      .casa {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: rgb(255, 245, 216, 0.9);
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        gap: 1rem;
+      }
+
+      .casa img {
+        max-width: 50%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .casa div {
+        flex: 1;
+      }
+
+      .logo-box img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @font-face {
+        font-family: "Gill Sans MT Ext Condensed Bold";
+        src: url("fonts/Gill\ Sans\ MT\ Extended\ Condensed\ Bold.TTF")
+          format("truetype");
+      }
+
+      @font-face {
+        font-family: "Britannic Bold Italic";
+        src: url("fonts/Britannic\ Bold\ Italic.ttf") format("truetype");
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 1rem;
+        background: #eebb91;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: normal;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #ec9f61;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.103);
+      }
+
+      .btn-container {
+        text-align: right; /* Align the button to the right */
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .casa {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .casa img {
+          max-width: 100%;
+        }
+
+        .casa div {
+          margin: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header {
+          padding: 0.5rem;
+        }
+
+        .btn {
+          font-size: 22px;
+          padding: 0.5rem;
+        }
+
+        .btn-container {
+          text-align: center; /* Center the button on small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-box">
+        <img src="img/Logo/Logo 1 sottolineato.png" alt="La mia casa al mare" />
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="casa">
+        <img src="img/Via Esperanto/sala.jpg"" alt="Casa al mare" />
+        <div>
+          <h2
+            style="
+              font-family: 'britannic bold italic', sans-serif;
+              font-size: 20px;
+              margin: 0;
+            "
+          >
+            Appartamento Via Esperanto
+          </h2>
+          <div style="align-items: center; margin-top: 0.5rem">
+            <img
+              src="img/Logo/beach-icon.svg"
+              alt="Icona"
+              style="
+                width: 23px;
+                height: 23px;
+                margin-right: 0.5rem;
+                align-items: center;
+              "
+            />
+            <span style="font-size: 15px; color: #7e7e7e"
+              >500m dalla spiaggia; 500m dal centro
+            </span>
+          </div>
+          <p>
+            Una bellissima casa con vista sul mare. 80 mq, 2 camere da letto, 1
+            bagno, cucina attrezzata, soggiorno luminoso e terrazza con vista
+            mare. La casa è situata in una zona tranquilla, a pochi passi dalla
+            spiaggia e dai ristoranti locali. Ideale per famiglie o coppie in
+            cerca di relax.
+          </p>
+          <div class="btn-container">
+            <a href="prova app1.html" class="btn">Scopri di più</a>
+          </div>
         </div>
-</header>
-    
-<div class="container" style="display: flex; align-items: stretch; justify-content: space-between;">
-    <div class="casa" style="flex: 1; margin-right: 1rem; display: flex; flex-direction: column; justify-content: space-between;">
-        <h2 style="font-family: 'Gill Sans MT Ext Condensed Bold'; font-size: 35px;">Appartamento 1</h2>
-        <p>Una bellissima casa con vista sul mare.</p>
-        <img src="img/blue.jfif" alt="Casa al mare" style="max-width: 100%; max-height: 300px; height: auto; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 1rem;">
-        <a href="prova app1.html" class="btn" style="margin-top: 1rem;">Scopri di più</a>
+      </div>
     </div>
-</div>
 
-  <div class="container">
-    <div class="casa">
-      <h2>La mia casa al mare</h2>
-      <p>Una bellissima casa con vista sul mare.</p>
-      <a href="prova app1.html" class="btn">Scopri di più</a>
+    <div class="container">
+      <div class="casa">
+        <div>
+          <h2>La mia casa al mare</h2>
+          <p>Una bellissima casa con vista sul mare.</p>
+          <a href="prova app1.html" class="btn">Scopri di più</a>
+        </div>
+        <img src="img/casa prova.jpg" alt="Casa al mare" />
+      </div>
     </div>
-  </div>
 
-  <div class="container">
-    <div class="casa">
-      <h2>La mia casa al mare</h2>
-      <p>Una bellissima casa con vista sul mare.</p>
-      <a href="Appartamento Via Esperanto.html" class="btn">Scopri di più</a>
+    <div class="container">
+      <div class="casa">
+        <div>
+          <h2>La mia casa al mare</h2>
+          <p>Una bellissima casa con vista sul mare.</p>
+          <a href="prova app1.html" class="btn">Scopri di più</a>
+        </div>
+        <img src="img/casa prova.jpg" alt="Casa al mare" />
+      </div>
     </div>
-  </div>
-
-      <div class="container">
-    <div class="casa">
-      <h2>La mia casa al mare</h2>
-      <p>Una bellissima casa con vista sul mare.</p>
-      <a href="Appartamento Via Esperanto.html" class="btn">Scopri di più</a>
-    </div>
-  </div>
-  
-</body>
+  </body>
 </html>
