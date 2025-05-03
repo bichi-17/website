@@ -1,235 +1,605 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appartamento Via Esperanto</title>
     <style>
-        body { 
-            font-family: sans-serif; 
-            margin: 0; 
-            background: url('img/background/lamiacasaalmare_sfondo.svg') no-repeat center center fixed; 
-            background-size: cover; 
-        }
-        header { background: rgba(255, 245, 216, 0.9); color: white; padding: 1rem; text-align: center; }
-        .container { max-width: 900px; margin: auto; padding: 2rem; background: rgba(255, 255, 255, 0.9); border-radius: 8px; }
-        .gallery img { width: 30%; margin: 5px; border-radius: 8px; }
-        .calendar { margin-top: 2rem; }
-        .calendar h3 { margin-bottom: 0.5rem; }
-        .date { display: inline-block; width: 80px; padding: 0.5rem; margin: 5px; border-radius: 5px; text-align: center; background-color: #dff0d8; }
-        .booked { background-color: #f2dede; color: #a94442; }
-        .btn-back { display: inline-block; margin-top: 2rem; background: #3498db; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px; }
-        .logo-box img { max-width: 100%; height: auto; }
-        @font-face {
-            font-family: 'Britannic Bold Italic';
-            src: url('fonts/Britannic\ Bold\ Italic.ttf') format('truetype');
-        }
-    </style>    
-</head>
-<body>
+      /* General Styles */
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        background: url("img/background/lamiacasaalmare_sfondo.svg") no-repeat
+          center center fixed;
+        background-size: cover;
+      }
 
-<header style="text-align: center; padding: 1rem 0;">
-    <div class="logo-box">
-        <img src="img/Logo/Logo 1 sottolineato.png" alt="La mia casa al mare" style="max-width: 600px;">
-    </div>
-</header>
+      header {
+        background: rgb(255, 247, 223);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
 
-  <div class="container">
-    <h2 style="font-family: 'Britannic Bold Italic'; font-size: 50px;">Appartamento 1</h2>
-    <p>Casa accogliente con vista sul mare, 2 camere da letto, terrazza panoramica, Wi-Fi e parcheggio gratuito.</p>
+      .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 2rem;
+        background: rgba(255, 250, 235, 0.973);
+        border-radius: 8px;
+      }
 
-    <div class="gallery">
-      <img src="img/blue.jfif" alt="Casa al Mare" style="width: 100px;">
-      <img src="img/blue.jfif" alt="Casa al Mare" style="width: 200px;">
-      <img src="img/blue.jfif" alt="Casa al Mare" style="width: 200px;">
-    </div>
+      .gallery img {
+        width: 30%;
+        margin: 5px;
+        border-radius: 8px;
+      }
 
-    <div class="prices-container">
-        <h3 style="font-family: 'Britannic Bold Italic'; font-size: 40px;">Prezzi</h3>
-        <p>Prezzo per notte: <strong>€100</strong> (Media Stagione)</p>
-        <p>Note: Minimo 3 notti</p>
-    </div>
-
-    <!-- <div class="calendar">
-      <h3>Disponibilità</h3>
-      <div class="date booked" style="background-color: #e74c3c; color: white; font-weight: bold;">1 Maggio</div>
-      <div class="date" style="background-color: #2ecc71; color: white; font-weight: bold;">2 Maggio</div>
-      <div class="date" style="background-color: #2ecc71; color: white; font-weight: bold;">3 Maggio</div>
-      <div class="date booked" style="background-color: #e74c3c; color: white; font-weight: bold;">4 Maggio</div>
-      <div class="date" style="background-color: #2ecc71; color: white; font-weight: bold;">5 Maggio</div>
-      <div class="date booked" style="background-color: #e74c3c; color: white; font-weight: bold;">6 Maggio</div>
-      <div class="booking">
-        <h3>Richiedi una prenotazione</h3s>
-        <form onsubmit="prenota(event)">
-          <label>Nome:<br>
-            <input type="text" name="nome" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
-          </label><br>
-          <label>Email:<br>
-            <input type="email" name="email" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
-          </label><br>
-          <label>Data di arrivo:<br>
-            <input type="date" name="arrivo" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
-          </label><br>
-          <label>Data di partenza:<br>
-            <input type="date" name="partenza" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px;">
-          </label><br>
-          <button type="submit" style="background: #2980b9; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer;">Invia richiesta</button>
-        </form>
-      </div>      
-    </div> -->
-
-<div class="calendar-container">
-    <h3 style="font-family: 'Britannic Bold Italic'; font-size: 20px;">Calendario Disponibilità</h3>
-    <div id="calendar"></div>
-</div>
- 
-<script>
-    // Dati di esempio: giorni prenotati
-    const bookedDates = ["2025-05-01", "2025-05-04", "2025-05-06"];
-
-    function generateCalendar(year, month) {
-        const calendar = document.getElementById("calendar");
-        calendar.innerHTML = ""; // Pulisce il calendario precedente
-
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        // Intestazione del calendario con navigazione
-        const header = document.createElement("div");
-        header.className = "calendar-header";
-        header.innerHTML = `
-            <button onclick="changeMonth(${year}, ${month - 1})">&lt;</button>
-            <strong>${new Date(year, month).toLocaleString("it-IT", { month: "long", year: "numeric" })}</strong>
-            <button onclick="changeMonth(${year}, ${month + 1})">&gt;</button>
-        `;
-        calendar.appendChild(header);
-
-        // Giorni della settimana
-        const daysOfWeek = ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"];
-        const daysRow = document.createElement("div");
-        daysRow.className = "calendar-row";
-        daysOfWeek.forEach(day => {
-            const dayCell = document.createElement("div");
-            dayCell.className = "calendar-cell calendar-day";
-            dayCell.textContent = day;
-            daysRow.appendChild(dayCell);
-        });
-        calendar.appendChild(daysRow);
-
-        // Giorni del mese
-        const daysGrid = document.createElement("div");
-        daysGrid.className = "calendar-grid";
-
-        // Celle vuote prima del primo giorno
-        for (let i = 0; i < firstDay; i++) {
-            const emptyCell = document.createElement("div");
-            emptyCell.className = "calendar-cell empty";
-            daysGrid.appendChild(emptyCell);
-        }
-
-        // Celle per i giorni del mese
-        for (let day = 1; day <= daysInMonth; day++) {
-            const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-            const dayCell = document.createElement("div");
-            dayCell.className = "calendar-cell";
-            dayCell.textContent = day;
-
-            // Evidenzia i giorni prenotati
-            if (bookedDates.includes(date)) {
-                dayCell.classList.add("booked");
-                dayCell.title = "Prenotato";
-            } else {
-                dayCell.classList.add("available");
-                dayCell.title = "Disponibile";
-            }
-
-            daysGrid.appendChild(dayCell);
-        }
-
-        calendar.appendChild(daysGrid);
-    }
-
-    function changeMonth(year, month) {
-        if (month < 0) {
-            year--;
-            month = 11;
-        } else if (month > 11) {
-            year++;
-            month = 0;
-        }
-        generateCalendar(year, month);
-    }
-
-    // Genera il calendario per il mese corrente
-    const today = new Date();
-    generateCalendar(today.getFullYear(), today.getMonth());
-</script>
-
-<style>
-    .calendar-container {
+      .map-container {
         margin-top: 2rem;
         padding: 1rem;
-        background: rgba(255, 236, 214, 0.9);
-        border-radius: 3px;
-        box-shadow: 0 2px 5px rgba(70, 58, 38, 0.725);
-    }
-    .calendar-header {
-        text-align: center;
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-    }
-    .calendar-header button {
-        background: #ffe8a7;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-back {
+        display: inline-block;
+        margin-top: 1.5rem;
+        background: #3498db;
         color: white;
-        border: none;
-        padding: 0.3rem 0.6rem;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .calendar-header button:hover {
-        background: #cab885;
-        color: white;
-        border: none;
-        padding: 0.3rem 0.6rem;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .calendar-row, .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 5px;
-    }
-    .calendar-cell {
+        padding: 1.5rem 0rem;
+        text-decoration: none;
+        border-radius: 8px;
         text-align: center;
-        padding: 0.5rem;
-        border-radius: 4px;
-        font-size: 0.9rem;
-    }
-    .calendar-day {
+        width: 100%;
+      }
+
+      .logo-box img {
+        width: 70%;
+        height: auto;
+      }
+
+      @font-face {
+        font-family: "Britannic Bold Italic";
+        src: url("fonts/Britannic\ Bold\ Italic.ttf") format("truetype");
+      }
+
+      .map-container {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: rgba(255, 247, 223);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      }
+
+      .gallery img {
+        width: 45%; /* Make images larger on smaller screens */
+        margin: 5px auto;
+        display: block; /* Center images */
+      }
+      .gallery-scroll {
+        display: flex; /* Use flexbox for horizontal layout */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        scroll-snap-type: x mandatory; /* Snap to each image when scrolling */
+        gap: 10px; /* Add spacing between images */
+        padding: 10px 0; /* Add padding for better spacing */
+        width: 100%; /* Ensure the gallery takes the full width of the container */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .gallery-scroll img {
+        flex-shrink: 0; /* Prevent images from shrinking */
+        width: 50%; /* Maintain the aspect ratio */
+        height: auto; /* Set a fixed height for the images */
+        object-fit: contain; /* Ensure the entire image is visible without cropping */
+        border-radius: 5px; /* Add rounded corners */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        scroll-snap-align: center; /* Center the image when scrolling */
+      }
+      /* Optional: Hide scrollbar for a cleaner look */
+      .gallery-scroll::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for a cleaner look */
+      }
+
+      .gallery-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .gallery-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.224);
+        padding: 0.5rem 1rem;
+        border-radius: 25%;
+        cursor: pointer;
+        z-index: 10;
+        text-decoration: none;
+        user-select: none;
+      }
+
+      .gallery-nav.left {
+        left: 10px;
+      }
+
+      .gallery-nav.right {
+        right: 10px;
+      }
+
+      .gallery-nav:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .thumbs {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 10px;
+        padding: 10px 0;
+        width: 100%;
+      }
+
+      .thumbs > a {
+        flex-shrink: 0; /* Prevent thumbnails from shrinking */
+        width: auto; /* Set a fixed width for thumbnails */
+        height: auto; /* Set a fixed height for thumbnails */
+        overflow: hidden; /* Hide overflow for rounded corners */
+        border-radius: 8px; /* Add rounded corners */
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+
+      .thumbs > a img {
+        width: auto; /* Ensure the image fills the thumbnail */
+        height: 200px; /* Ensure the image fills the thumbnail */
+        object-fit: contain; /* Crop the image to fit the thumbnail */
+        transition: transform 0.2s ease-in-out; /* Smooth scaling effect */
+      }
+
+      .thumbs > a:hover img {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a stronger shadow on hover */
+      }
+
+      .lightbox {
+        position: fixed;
+        background: rgba(
+          0,
+          0,
+          0,
+          0.386
+        ); /* Dark background with transparency */
+        backdrop-filter: blur(10px); /* Add a blur effect */
+        -webkit-backdrop-filter: blur(10px); /* Add a blur effect for Safari */
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        display: none; /* Hidden by default */
+        align-items: center; /* Center content vertically */
+        justify-content: center; /* Center content horizontally */
+        z-index: 1000; /* Ensure it appears above other elements */
+      }
+
+      .lightbox:target {
+        display: flex; /* Show the lightbox when targeted */
+      }
+
+      .lightbox .target {
+        position: relative; /* Ensure proper positioning */
+        height: 100%; /* Full height of the lightbox */
+        width: 100%; /* Full width of the lightbox */
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Center items vertically */
+        justify-content: space-between; /* Place arrows on the sides of the image */
+      }
+
+      .lightbox .nav {
+        text-decoration: none;
+        color: white;
+        font-size: 40px;
+        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.8);
+        opacity: 0.5;
+        font-weight: 200;
+        margin: 0 10px;
+      }
+
+      .lightbox .content {
+        max-width: 90%; /* Limit the width of the image */
+        max-height: 90%; /* Limit the height of the image */
+        border-radius: 8px; /* Add rounded corners */
+        overflow: hidden; /* Hide overflow for rounded corners */
+      }
+
+      .lightbox .content img {
+        /* dimensioni immagini mod. zoom */
+        width: 50%;
+        max-height: 50%;
+        margin: auto;
+        display: block;
+      }
+
+      .lightbox .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 30px;
+        text-decoration: none;
+        background: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Add a background to the close button */
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background 0.2s ease-in-out;
+      }
+
+      #calendar {
+        font-family: "Britannic Bold Italic";
+        background: rgba(255, 247, 223); /* Light background */
+        border-radius: 8px; /* Rounded corners */
+        padding: 10px; /* Add padding */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+      }
+
+      .fc-toolbar {
+        background: #fae7a8; /* Toolbar background color */
+        color: rgb(0, 0, 0); /* Toolbar text color */
+        border-radius: 8px 8px 0 0; /* Rounded corners for the top */
+        padding: 5px;
+      }
+
+      .fc-daygrid-day {
+        border: 1px solid #ddd; /* Add borders to days */
+      }
+
+      .fc-daygrid-day-number {
+        color: #000000; /* Change day number color */
         font-weight: bold;
-        background: #fff5ec;
-    }
-    .booked {
-        background: #ff9c91;
-        color: white;
-    }
-    .available {
-        background: #63f19e;
-        color: rgb(3, 3, 2);
-    }
-    .empty {
-        visibility: hidden;
-    }
-</style>
+      }
 
-    <a href="index.html" class="btn-back">Torna alla homepage</a>
-  </div>
+      .fc-event {
+        background: #ff6f6f; /* Event background color */
+        color: white; /* Event text color */
+        border-radius: 4px; /* Rounded corners for events */
+        padding: 1px 5px;
+      }
 
-</body>
-<script>
-    function prenota(event) {
-      event.preventDefault();
-      alert("Grazie! La tua richiesta di prenotazione è stata inviata.");
-      // Qui in futuro potrai inviare i dati a un server o email
-    }
-  </script>  
+      .fc-day-today {
+        background: rgb(255, 250, 250); /* Highlight today's date */
+      }
+
+      @media (max-width: 480px) {
+        header {
+          padding: 0rem;
+        }
+
+        h2 {
+          font-size: 1rem; /* Reduce heading size */
+        }
+
+        .thumbs > a {
+          flex-shrink: 0; /* Prevent thumbnails from shrinking */
+          width: auto; /* Set a fixed width for thumbnails */
+          height: auto; /* Set a fixed height for thumbnails */
+          overflow: hidden; /* Hide overflow for rounded corners */
+          border-radius: 8px; /* Add rounded corners */
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+          transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .gallery-scroll {
+          display: flex; /* Use flexbox for horizontal layout */
+          overflow-x: auto; /* Enable horizontal scrolling */
+          scroll-snap-type: x mandatory; /* Snap to each image when scrolling */
+          gap: 10px; /* Add spacing between images */
+          padding: 10px 0; /* Add padding for better spacing */
+          width: 100%; /* Ensure the gallery takes the full width of the container */
+        }
+
+        .gallery-nav {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 0rem;
+          color: white;
+          background: rgba(0, 0, 0, 0.224);
+          padding: 0rem 0rem;
+          border-radius: 25%;
+          cursor: pointer;
+          z-index: 10;
+          text-decoration: none;
+          user-select: none;
+        }
+
+        .gallery-scroll img {
+          flex-shrink: 0; /* Prevent images from shrinking */
+          height: 300px; /* Set a fixed height for the images */
+          width: auto; /* Maintain the aspect ratio */
+          object-fit: contain; /* Ensure the entire image is visible without cropping */
+          border-radius: 8px; /* Add rounded corners */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+          scroll-snap-align: center; /* Center the image when scrolling */
+        }
+        /* Optional: Hide scrollbar for a cleaner look */
+        .gallery-scroll::-webkit-scrollbar {
+          display: none;
+        }
+        .gallery-scroll {
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+          scrollbar-width: none; /* Firefox */
+        }
+
+        .lightbox .content img {
+          /* dimensioni immagini mod. zoom */
+          width: 100%;
+          max-height: 100%;
+          margin: auto;
+          display: block;
+        }
+
+        #calendar {
+          font-size: 13px; /* Reduce the overall font size of the calendar */
+        }
+
+        .fc-daygrid-day-number {
+          font-size: 13px; /* Reduce the font size of the day numbers */
+        }
+
+        .fc-event {
+          font-size: 13px; /* Reduce the font size of event titles */
+          padding: 1px 3px; /* Adjust padding for smaller screens */
+        }
+
+        .fc-toolbar button {
+          font-size: 12px; /* Adjust the font size of toolbar buttons */
+        }
+
+        .btn-back {
+          font-size: 1rem;
+          padding: 0.5rem;
+        }
+      }
+    </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  </head>
+  <body>
+    <header style="text-align: center; padding: 1rem 0; margin-bottom: 20px">
+      <div class="logo-box">
+        <img
+          src="img/Logo/Logo 1 sottolineato.png"
+          alt="logo-box"
+          style="max-width: 100%; height: auto"
+        />
+      </div>
+    </header>
+
+    <div class="container">
+      <h2 style="font-family: 'Britannic Bold Italic'; font-size: 30px">
+        Appartamento Via Esperanto
+      </h2>
+
+      <div class="gallery-container">
+        <a class="gallery-nav left" href="javascript:void(0);">&lt;</a>
+        <div class="gallery-scroll">
+          <div class="thumbs"></div>
+        </div>
+        <a class="gallery-nav right" href="javascript:void(0);">&gt;</a>
+      </div>
+      <p>
+        Casa accogliente con vista sul mare, 2 camere da letto, terrazza
+        panoramica, Wi-Fi e parcheggio gratuito.
+      </p>
+      <div class="prices-container">
+        <h3 style="font-family: 'Britannic Bold Italic'; font-size: 20px">
+          Prezzi
+        </h3>
+        <p>Prezzo per notte: <strong>€100</strong> (Media Stagione)</p>
+      </div>
+
+      <h2 style="font-family: 'Britannic Bold Italic'; font-size: 20px">
+        Disponibilità
+      </h2>
+      <div id="calendar"></div>
+
+      <script>
+        // script per il calendario
+        document.addEventListener("DOMContentLoaded", function () {
+          const calendarEl = document.getElementById("calendar");
+
+          const icalURL =
+            "https://ical-proxy-production.up.railway.app/api/booking-calendar?url=https%3A%2F%2Fical.booking.com%2Fv1%2Fexport%3Ft%3D575b21ef-f8df-41c2-822b-2d49524a9cab";
+
+          fetch(icalURL)
+            .then((response) => response.json())
+            .then((data) => {
+              const uniqueEvents = Array.from(
+                new Map(
+                  data.events.map((event) => [
+                    `${event.start}-${event.end}`,
+                    event,
+                  ])
+                ).values()
+              );
+              console.log("Unique events:", uniqueEvents); // Log unique events
+
+              const events = uniqueEvents.map((event) => ({
+                title: "Occupato",
+                start: event.start,
+                end: event.end,
+                color: "#ff4c4c", // Event background color
+                textColor: "#ffffff", // Event text color
+                borderColor: "#000000",
+              }));
+              const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth",
+                height: "500px", // Adjust height automatically
+                dayHeaderContent: (args) => {
+                  return ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"][
+                    args.date.getDay()
+                  ];
+                },
+                events: events,
+                eventContent: function (arg) {
+                  // Customize the event display
+                  return {
+                    html: `<div style="text-align: center;">${arg.event.title}</div>`,
+                  };
+                },
+              });
+              calendar.render();
+            })
+
+            .catch((err) => {
+              console.error("Error loading calendar:", err);
+              calendarEl.innerHTML =
+                '<p style="color: red;">Failed to load calendar.</p>';
+            });
+        });
+      </script>
+
+      <div class="map-container">
+        <h3 style="font-family: 'Britannic Bold Italic'; font-size: 20px">
+          Posizione
+        </h3>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1067.2004726863152!2d10.107663697514637!3d44.00843212050778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d508c1e84d7e21%3A0xc119fe790a351e7d!2sVia%20Esperanto%2C%2011%2C%2054100%20Massa%20MS!5e0!3m2!1sen!2sit!4v1746190427121!5m2!1sen!2sit"
+          width="100%"
+          height="300px"
+          style="border: 0; border-radius: 8px"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <a href="index.html" class="btn-back">Torna alla homepage</a>
+    </div>
+  </body>
+  <script>
+    // script per la galleria
+    document.addEventListener("DOMContentLoaded", () => {
+      const thumbsContainer = document.querySelector(".thumbs");
+      const lightboxContainer = document.querySelector(".container"); // Use the main container for lightbox entries
+      let images = []; // Declare the images array in a higher scope
+
+      // Fetch the list of images from the JSON file
+      fetch("images.json")
+        .then((response) => response.json())
+        .then((data) => {
+          images = data; // Populate the images array
+          images.forEach((image, index) => {
+            // Create a new anchor and image element for each image
+            const anchor = document.createElement("a");
+            anchor.href = `#img${index + 1}`; // Set lightbox target
+
+            const img = document.createElement("img");
+            img.src = image; // Set image source
+            img.alt = `Image ${index + 1}`; // Set alt text
+
+            anchor.appendChild(img);
+            thumbsContainer.appendChild(anchor); // Add to the thumbs container
+
+            // Create lightbox structure
+            const lightbox = document.createElement("div");
+            lightbox.className = "lightbox";
+            lightbox.id = `img${index + 1}`;
+
+            const navLeft = document.createElement("a");
+            navLeft.className = "nav";
+            navLeft.href = `#img${index === 0 ? images.length : index}`; // Previous image
+            navLeft.textContent = "<";
+
+            const content = document.createElement("div");
+            content.className = "content";
+
+            const lightboxImg = document.createElement("img");
+            lightboxImg.src = image;
+            lightboxImg.alt = `Image ${index + 1}`;
+
+            content.appendChild(lightboxImg);
+
+            const navRight = document.createElement("a");
+            navRight.className = "nav";
+            navRight.href = `#img${((index + 1) % images.length) + 1}`; // Next image
+            navRight.textContent = ">";
+
+            const closeButton = document.createElement("a");
+            closeButton.className = "close";
+            closeButton.href = "#"; // Close the lightbox
+            closeButton.textContent = "×"; // Close icon
+
+            lightbox.appendChild(navLeft);
+            lightbox.appendChild(content);
+            lightbox.appendChild(navRight);
+            lightbox.appendChild(closeButton); // Append the close button
+
+            lightboxContainer.appendChild(lightbox); // Add the lightbox to the container
+          });
+        })
+        .catch((error) => {
+          console.error("Error loading images:", error);
+        });
+
+      const galleryScroll = document.querySelector(".gallery-scroll");
+      const leftArrow = document.querySelector(".gallery-nav.left");
+      const rightArrow = document.querySelector(".gallery-nav.right");
+
+      // Scroll left
+      leftArrow.addEventListener("click", () => {
+        galleryScroll.scrollBy({
+          left: -400, // Adjust scroll amount
+          behavior: "smooth",
+        });
+      });
+
+      // Scroll right
+      rightArrow.addEventListener("click", () => {
+        galleryScroll.scrollBy({
+          left: 400, // Adjust scroll amount
+          behavior: "smooth",
+        });
+      });
+
+      // Close lightbox with the Escape key
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          window.location.hash = ""; // Navigate to the default state to close the lightbox
+        }
+      });
+
+      // Add keyboard navigation for the lightbox
+      document.addEventListener("keydown", (event) => {
+        const currentHash = window.location.hash; // Get the current hash (e.g., #img1)
+        if (!currentHash.startsWith("#img")) return; // Exit if not in the lightbox
+
+        const currentIndex = parseInt(currentHash.replace("#img", ""), 10); // Extract the current image index
+        if (event.key === "ArrowLeft") {
+          // Navigate to the previous image
+          const prevIndex =
+            currentIndex === 1 ? images.length : currentIndex - 1; // Wrap around to the last image
+          window.location.hash = `#img${prevIndex}`;
+        } else if (event.key === "ArrowRight") {
+          // Navigate to the next image
+          const nextIndex =
+            currentIndex === images.length ? 1 : currentIndex + 1; // Wrap around to the first image
+          window.location.hash = `#img${nextIndex}`;
+        }
+      });
+    });
+  </script>
 </html>
